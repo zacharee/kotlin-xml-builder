@@ -1,14 +1,16 @@
 [versions]
 android-gradle = "8.10.1"
 charset = "0.0.4"
-jaxbXjc = "4.0.5"
+jaxb = "4.0.5"
 junit = "4.13.2"
 kotlin = "2.1.21"
 mavenPublish = "0.32.0"
+shadow = "8.1.1"
 
 [libraries]
 charset = { module = "com.fleeksoft.charset:charset", version.ref = "charset" }
-jaxb-xjc = { module = "org.glassfish.jaxb:jaxb-xjc", version.ref = "jaxbXjc" }
+jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version.ref = "jaxb" }
+jaxb-xjc = { module = "org.glassfish.jaxb:jaxb-xjc", version.ref = "jaxb" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -19,3 +21,4 @@ android-library = { id = "com.android.library", version.ref = "android-gradle" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }

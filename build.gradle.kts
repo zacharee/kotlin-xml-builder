@@ -4,6 +4,7 @@ plugins {
 	alias(libs.plugins.kotlin.jvm) apply false
 	alias(libs.plugins.kotlin.multiplatform) apply false
 	alias(libs.plugins.maven.publish) apply false
+	alias(libs.plugins.shadow) apply false
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

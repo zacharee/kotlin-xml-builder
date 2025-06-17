@@ -90,15 +90,20 @@ class DslGenerator(private val opts: ExOptions) {
 
 class ErrReceiver : ErrorReceiver() {
 	override fun warning(exception: SAXParseException) {
-		println(exception)
+		exception.printStackTrace()
 	}
 
 	override fun info(exception: SAXParseException) {
-		println(exception)
+		exception.printStackTrace()
 	}
 
-	override fun error(exception: SAXParseException) = throw exception
-	override fun fatalError(exception: SAXParseException) = throw exception
+	override fun error(exception: SAXParseException) {
+		exception.printStackTrace()
+	}
+
+	override fun fatalError(exception: SAXParseException) {
+		exception.printStackTrace()
+	}
 }
 
 class ExOptions : Options() {

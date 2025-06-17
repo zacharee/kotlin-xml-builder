@@ -101,8 +101,6 @@ kotlin {
 		}
 
 		val jvmTest by getting {
-			dependsOn(jvmMain)
-
 			dependencies {
 				implementation(libs.junit)
 				implementation(kotlin("test-junit", libs.versions.kotlin.get()))
