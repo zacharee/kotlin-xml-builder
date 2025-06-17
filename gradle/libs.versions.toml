@@ -5,7 +5,6 @@ jaxbXjc = "4.0.5"
 junit = "4.13.2"
 kotlin = "2.1.21"
 kotlinx-datetime = "0.6.2"
-ksoup = "0.2.4"
 mavenPublish = "0.32.0"
 
 [libraries]
@@ -15,7 +14,6 @@ junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
-ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle" }

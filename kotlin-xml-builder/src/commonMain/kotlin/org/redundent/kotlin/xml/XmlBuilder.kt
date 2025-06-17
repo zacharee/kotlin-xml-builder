@@ -1,12 +1,5 @@
 package org.redundent.kotlin.xml
 
-import com.fleeksoft.io.Reader
-import com.fleeksoft.ksoup.nodes.CDataNode
-import com.fleeksoft.ksoup.nodes.Document
-import com.fleeksoft.ksoup.nodes.Element
-import com.fleeksoft.ksoup.nodes.TextNode
-import com.fleeksoft.ksoup.parser.Parser
-
 expect fun getLineSeparator(): String
 
 internal fun getLineEnding(printOptions: PrintOptions) = if (printOptions.pretty) getLineSeparator() else ""
@@ -59,58 +52,4 @@ fun node(name: String, namespace: Namespace? = null, init: (Node.() -> Unit)? = 
 		node.init()
 	}
 	return node
-}
-
-fun parse(reader: Reader, baseUri: String = ""): Node =
-	parse(Parser.xmlParser().parseInput(reader, baseUri))
-
-fun parse(document: Document): Node {
-	val root = document.root()
-
-	val result = xml(root.tagName())
-
-	copyAttributes(root, result)
-
-	val children = root.childNodes
-	(0 until children.size)
-		.map(children::elementAt)
-		.forEach { copy(it, result) }
-
-	return result
-}
-
-private fun copy(source: com.fleeksoft.ksoup.nodes.Node, dest: Node) {
-	when (source) {
-		is Element -> {
-			val cur = dest.element(source.nodeName())
-
-			copyAttributes(source, cur)
-
-			val children = source.childNodes
-			(0 until children.size)
-				.map(children::elementAt)
-				.forEach { copy(it, cur) }
-		}
-
-		is CDataNode -> {
-			dest.cdata(source.text())
-		}
-
-		is TextNode -> {
-			dest.text(source.text().trim { it.isWhitespace() || it == '\r' || it == '\n' })
-		}
-	}
-}
-
-private fun copyAttributes(source: com.fleeksoft.ksoup.nodes.Node, dest: Node) {
-	val attributes = source.attributes()
-	if (attributes.size == 0) {
-		return
-	}
-
-	(0 until attributes.size)
-		.map(attributes::elementAt)
-		.forEach {
-			dest.namespace(it.localName(), it.value)
-		}
 }
