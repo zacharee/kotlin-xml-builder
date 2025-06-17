@@ -889,7 +889,7 @@ open class Node(val nodeName: String) : Element {
 		return _children
 			.indexOfFirst { it === element }
 			.takeUnless { it == -1 }
-			?: throw IllegalArgumentException("Element (${element::class.qualifiedName ?: element::class.simpleName} is not a child of '$nodeName'")
+			?: throw IllegalArgumentException("Element (${element::class.simpleName} is not a child of '$nodeName'")
 	}
 
 	private fun setParentIfNode(element: Element, newParent: Node?) {
