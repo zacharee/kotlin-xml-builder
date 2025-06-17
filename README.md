@@ -1,4 +1,4 @@
-[![Download](https://maven-badges.sml.io/maven-central/dev.zwander/xmlbuilder/badge.svg)](https://maven-badges.sml.io/maven-central/dev.zwander/xmlbuilder)
+[![Download](https://maven-badges.sml.io/sonatype-central/dev.zwander/xmlbuilder/badge.svg)](https://maven-badges.sml.io/sonatype-central/dev.zwander/xmlbuilder)
 
 Kotlin XML Builder
 =
