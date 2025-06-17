@@ -88,7 +88,6 @@ kotlin {
 				implementation(libs.kotlin.stdlib)
 				implementation(libs.kotlin.reflect)
 				implementation(libs.charset)
-				implementation(libs.kotlinx.datetime)
 			}
 		}
 

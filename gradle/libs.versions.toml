@@ -4,7 +4,6 @@ charset = "0.0.4"
 jaxbXjc = "4.0.5"
 junit = "4.13.2"
 kotlin = "2.1.21"
-kotlinx-datetime = "0.6.2"
 mavenPublish = "0.32.0"
 
 [libraries]
@@ -13,7 +12,6 @@ jaxb-xjc = { module = "org.glassfish.jaxb:jaxb-xjc", version.ref = "jaxbXjc" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle" }

@@ -1,8 +1,10 @@
 package org.redundent.kotlin.xml
 
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.format
-import kotlinx.datetime.format.char
+data class Date(
+	val year: Int,
+	val month: Int,
+	val dayOfMonth: Int,
+)
 
 const val DEFAULT_URLSET_NAMESPACE = "http://www.sitemaps.org/schemas/sitemap/0.9"
 
@@ -13,7 +15,7 @@ class UrlSet internal constructor() : Node("urlset") {
 
 	fun url(
 		loc: String,
-		lastmod: LocalDate? = null,
+		lastmod: Date? = null,
 		changefreq: ChangeFreq? = null,
 		priority: Double? = null
 	) {
@@ -42,7 +44,7 @@ class Sitemapindex internal constructor() : Node("sitemapindex") {
 
 	fun sitemap(
 		loc: String,
-		lastmod: LocalDate? = null
+		lastmod: Date? = null
 	) {
 		"sitemap" {
 			"loc"(loc)
@@ -65,14 +67,12 @@ enum class ChangeFreq {
 	never
 }
 
-private fun formatDate(date: LocalDate): String {
-	return date.format(LocalDate.Format {
-		year()
-		char('-')
-		monthNumber()
-		char('-')
-		dayOfMonth()
-	})
+private fun formatDate(date: Date): String {
+	val year = "${date.year}"
+	val month = "${date.month}".padStart(2, '0')
+	val dayOfMonth = "${date.dayOfMonth}".padStart(2, '0')
+
+	return "${year}-${month}-${dayOfMonth}"
 }
 
 fun urlset(init: UrlSet.() -> Unit) = UrlSet().apply(init)
