@@ -20,7 +20,7 @@ class sitemapTest : TestBase() {
 		val urlset = urlset {
 			url(
 				"http://blog.redundent.org",
-				SimpleDateFormat("yyyy-MM-dd").parse("2017-10-24"),
+				Date(year = 2017, month = 10, dayOfMonth = 24),
 				ChangeFreq.hourly,
 				14.0
 			)
@@ -30,10 +30,9 @@ class sitemapTest : TestBase() {
 
 	@Test
 	fun sitemapIndex() {
-		val format = SimpleDateFormat("yyyy-MM-dd")
 		val sitemapIndex = sitemapindex {
-			sitemap("http://blog.redundent.org/sitemap1.xml", format.parse("2017-10-24"))
-			sitemap("http://blog.redundent.org/sitemap2.xml", format.parse("2016-01-01"))
+			sitemap("http://blog.redundent.org/sitemap1.xml", Date(year = 2017, month = 10, dayOfMonth = 24))
+			sitemap("http://blog.redundent.org/sitemap2.xml", Date(year = 2016, month = 1, dayOfMonth = 1))
 			sitemap("http://blog.redundent.org/sitemap3.xml")
 		}
 

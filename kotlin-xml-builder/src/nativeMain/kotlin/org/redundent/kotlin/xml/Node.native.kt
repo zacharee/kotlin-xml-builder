@@ -4,6 +4,6 @@ actual fun isReflectionAvailable(): Boolean {
 	return false
 }
 
-actual fun processAnnotations(): Map<String, Int>? {
+actual fun Node.processAnnotations(): Map<String, Int>? {
 	return null
 }

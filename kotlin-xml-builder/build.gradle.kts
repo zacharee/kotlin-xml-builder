@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.kotlin
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -97,6 +98,16 @@ kotlin {
 
 		val jvmMain by getting {
 			dependsOn(jvmAndAndroidMain)
+		}
+
+		val jvmTest by getting {
+			dependsOn(jvmMain)
+
+			dependencies {
+				implementation(libs.junit)
+				implementation(kotlin("test-junit", libs.versions.kotlin.get()))
+				implementation(libs.kotlin.reflect)
+			}
 		}
 
 		val androidMain by getting {

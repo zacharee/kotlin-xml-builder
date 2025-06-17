@@ -5,7 +5,7 @@ import kotlin.collections.LinkedHashMap
 import kotlin.collections.LinkedHashSet
 
 expect fun isReflectionAvailable(): Boolean
-expect fun processAnnotations(): Map<String, Int>?
+expect fun Node.processAnnotations(): Map<String, Int>?
 
 /**
  * Base type for all elements. This is what handles pretty much all the rendering and building.

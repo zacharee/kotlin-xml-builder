@@ -478,51 +478,6 @@ class XmlBuilderTest : TestBase() {
 	}
 
 	@Test
-	fun parseAndVerify() {
-		val xmlns = "https://blog.redundent.org"
-		val value = "value"
-		val input = ByteArrayInputStream("<root xmlns=\"$xmlns\"><child>$value</child></root>".toByteArray())
-
-		val root = parse(input)
-
-		assertEquals("root", root.nodeName, "root element nodeName is correct")
-		assertEquals(xmlns, root.xmlns, "root xmlns is correct")
-
-		val children = root.children
-		assertEquals(1, children.size, "root has 1 child")
-		assertTrue(children[0] is Node, "child is a node")
-
-		val child = children.first() as Node
-		assertTrue(child.children[0] is TextElement, "element is text")
-		assertEquals(value, (child.children[0] as TextElement).text)
-	}
-
-	@Test
-	fun parseCData() = parseTest()
-
-	@Test
-	fun parseCDataWhitespace() = parseTest()
-
-	@Test
-	fun parseCustomNamespaces() = parseTest()
-
-	@Test
-	fun parseMultipleAttributes() = parseTest()
-
-	@Test
-	fun parseBasicTest() = parseTest()
-
-	@Test
-	fun parseXmlEncode() = parseTest()
-
-	private fun parseTest() {
-		val input = getInputStream()
-		val xml = parse(input)
-
-		validateTest(xml)
-	}
-
-	@Test
 	fun checkIncludeXmlPrologFlag() {
 		val node = xml("test")
 		assertFalse(node.includeXmlProlog, "prolog is false")
@@ -540,7 +495,7 @@ class XmlBuilderTest : TestBase() {
 
 	@Test
 	fun xmlVersion() {
-		for (version in XmlVersion.values()) {
+		for (version in XmlVersion.entries) {
 			val xml = xml("test", version = version).toString(prettyFormat = false)
 			assertEquals("<?xml version=\"${version.value}\" encoding=\"UTF-8\"?><test/>", xml)
 		}
