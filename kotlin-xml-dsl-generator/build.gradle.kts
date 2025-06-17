@@ -1,51 +1,13 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-	kotlin("jvm")
-	id("com.github.johnrengelman.shadow") version "5.2.0"
-	`maven-publish`
-	signing
-	id("org.jlleitschuh.gradle.ktlint")
-}
-
-val kotlinVersion: String by rootProject.extra
-
-tasks {
-	val jar by getting(Jar::class) {
-		manifest {
-			attributes(mapOf("Main-Class" to "org.redundent.kotlin.xml.gen.DslGeneratorKt"))
-		}
-	}
-
-	withType<ShadowJar> {
-		archiveClassifier.set(null as String?)
-	}
-
-	register<Jar>("sourceJar") {
-		from(sourceSets["main"].allSource)
-		destinationDirectory.set(jar.destinationDirectory)
-		archiveClassifier.set("sources")
-	}
+	alias(libs.plugins.kotlin.jvm)
 }
 
 dependencies {
-	implementation(kotlin("stdlib", kotlinVersion))
-	implementation(kotlin("reflect", kotlinVersion))
-	implementation("org.glassfish.jaxb:jaxb-xjc:2.3.8")
+	implementation(libs.kotlin.stdlib)
+	implementation(libs.kotlin.reflect)
+	implementation(libs.jaxb.xjc)
 
 	testImplementation(project(":kotlin-xml-builder"))
-	testImplementation("junit:junit:4.13.1")
-	testImplementation(kotlin("test-junit", kotlinVersion))
-}
-
-publishing {
-	publications {
-		register<MavenPublication>("maven") {
-			artifact(tasks["shadowJar"])
-
-			artifact(tasks["sourceJar"]) {
-				classifier = "sources"
-			}
-		}
-	}
+	testImplementation(libs.junit)
+	testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
 }
