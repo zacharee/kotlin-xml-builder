@@ -31,3 +31,6 @@ jobs:
 
       - name: Assemble
         run: ./gradlew assemble
+
+      - name: Check
+        run: ./gradlew check
